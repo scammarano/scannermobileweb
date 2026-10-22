@@ -1,8 +1,9 @@
 {
-  "scanner_web_reference": "0.6.36",
+  "scanner_web_reference": "0.6.37",
   "addon": "CFGPORT1",
   "profile_schema": "scanner.config.profile",
   "profile_format": 1,
-  "compatible_mobile_min": "0.3.4",
-  "published_at": "2026-10-22"
+  "compatible_mobile_min": "0.3.5",
+  "published_at": "2026-10-22",
+  "rebase_status": "local_zip_built_not_yet_uploaded_to_repository"
 }
