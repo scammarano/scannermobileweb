@@ -1,0 +1,34 @@
+name: Build Scanner Web ZIP
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build ZIP
+        shell: bash
+        run: |
+          mkdir -p dist
+          zip -9 -j dist/SCANNER_WEB_V0.6.36_CFGPORT1.zip             config_profile_mobile.php             README_PERFIL_MOBILE.md             README.md             VERSION.json
+          sha256sum dist/SCANNER_WEB_V0.6.36_CFGPORT1.zip > dist/SCANNER_WEB_V0.6.36_CFGPORT1.sha256.txt
+          ls -lh dist
+
+      - name: Upload ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: SCANNER_WEB_V0.6.36_CFGPORT1
+          path: |
+            dist/SCANNER_WEB_V0.6.36_CFGPORT1.zip
+            dist/SCANNER_WEB_V0.6.36_CFGPORT1.sha256.txt
+          if-no-files-found: error
+          retention-days: 30
